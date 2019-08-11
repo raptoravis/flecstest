@@ -1,0 +1,3 @@
+﻿  main.cpp
+E:\developer\flecstest\src\main.cpp(14): warning C4018: '<': signed/unsigned mismatch
+  flecstest.vcxproj -> E:\developer\flecstest\build\Debug\flecstest.exe

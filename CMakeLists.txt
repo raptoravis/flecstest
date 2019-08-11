@@ -1,25 +1,13 @@
 cmake_minimum_required (VERSION 2.6)
 
-project (flecs C)
+project (flecstest)
 
-file(GLOB flecs_SRC "src/*.c")
+add_compile_definitions(FLECS_STATIC)
 
-include_directories("include")
+file(GLOB flecs_SRC "src/*.cpp")
 
-add_compile_definitions(FLECS_IMPL)
+include_directories("include" "$ENV{FLECS_ROOT}/include")
+link_directories("$ENV{FLECS_ROOT}/lib")
 
-add_library(flecs_static STATIC ${flecs_SRC})
-add_library(flecs_shared SHARED ${flecs_SRC})
-
-target_compile_definitions(flecs_static PRIVATE FLECS_STATIC)
-
-
-install(
-	DIRECTORY ${PROJECT_SOURCE_DIR}/include/ DESTINATION include FILES_MATCHING PATTERN "*.h"
-)
-install(
-	TARGETS flecs_static DESTINATION lib
-)
-install(
-	TARGETS flecs_shared DESTINATION lib
-)
+add_executable(flecstest ${flecs_SRC})
+target_link_libraries(flecstest "flecs_static")
